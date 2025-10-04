@@ -9,7 +9,7 @@ const HeroSection = () => {
       <Image src={'/hero-r.svg'} alt='hero' width={1000} height={1000} className='lg:w-60 md:w-48 w-28 object-cover absolute top-0 right-0 -z-1' />
       <Image src={'/hero-l.svg'} alt='hero' width={1000} height={1000} className='lg:w-80 md:w-60 w-48  object-cover absolute bottom-0 left-0 -z-1' />
 
-      <div className='container  pb-20 pt-20 lg:pt-32 flex items-center lg:gap-12   '>
+      <div className='container  py-20 flex items-center lg:gap-12   '>
         {/* image */}
         <div className='relative h-full self-end max-lg:hidden'>
           <motion.img
