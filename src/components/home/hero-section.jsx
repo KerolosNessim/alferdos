@@ -39,7 +39,7 @@ const HeroSection = () => {
           {/* header */}
           <div className='space-y-2'>
             <p className='text-green-1 font-bold lg:text-base text-sm'>أفضل مدرسة لأولادك</p>
-            <Image src={'/line.svg'} alt='logo' width={1000} height={1000} className='lg:w-26 w-20' />
+            <Image src={'/Line.svg'} alt='logo' width={1000} height={1000} className='lg:w-26 w-20' />
           </div>
           {/* title */}
           <h1 className='lg:text-5xl md:text-4xl text-3xl text-text font-bold lg:leading-20 md:leading-14 leading-12 '>أكثر من +25 ألف طالب,<br className='hidden md:block' /> ولي أمر يثقون بنا</h1>
