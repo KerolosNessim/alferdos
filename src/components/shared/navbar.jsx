@@ -13,9 +13,9 @@ import {
 } from "@/components/ui/sheet"
 import { GiHamburgerMenu } from "react-icons/gi";
 
-const Navavbar = () => {
+const Navavbar = ({withbreadcrumb=false}) => {
   return (
-    <div className='bg-bg-green'>
+    <div className={`bg-bg-green ${withbreadcrumb && 'pb-20'}`}>
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ const Navavbar = () => {
         </nav>
         {/* buttons */}
         <div className='max-md:hidden flex items-center gap-4'>
-          <Link href={'/'} className="text-text font-bold text-sm hover:text-main-red transition-all duration-300">
+          <Link href={'/signup'} className="text-text font-bold text-sm hover:text-main-red transition-all duration-300">
           تسجيل الدخول
           </Link>
 
@@ -74,7 +74,7 @@ const Navavbar = () => {
                 </nav>
                 {/* buttons */}
                 <div className='flex items-center justify-center gap-4'>
-                  <Link href={'/'} className="text-text font-bold text-sm hover:text-main-red transition-all duration-300">
+                  <Link href={'/signup'} className="text-text font-bold text-sm hover:text-main-red transition-all duration-300">
                     تسجيل الدخول
                   </Link>
 

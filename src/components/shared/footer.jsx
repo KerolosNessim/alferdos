@@ -5,10 +5,11 @@ import Link from 'next/link'
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { FaInstagram, FaTwitter } from "react-icons/fa6";
 import * as motion from 'motion/react-client'
-const Footer = () => {
+const Footer = ({withBanner=false}) => {
   return (
     <footer>
       {/* banner */}
+      {withBanner &&      
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1}}
@@ -20,13 +21,14 @@ const Footer = () => {
         <Image src={'/banner.png'} alt='bg' width={1000} height={1000} className='w-full h-full object-cover' />
       </Link>
       </motion.div>
+      }
       {/* content */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className='bg-[#F8F9FB] pt-30'>
+        className={`bg-[#F8F9FB] ${withBanner && 'pt-30'} `}>
         {/* content */}
         <div className='py-20 container flex lg:justify-between max-lg:justify-center max-lg:flex-wrap max-lg:gap-12'>
           {/* logo and newsletter */}

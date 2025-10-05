@@ -17,7 +17,7 @@ export default function HomePage() {
         <EventsSection/>
         <BlogsSection />
       </main>
-      <Footer />
+      <Footer withBanner/>
     </>
   );
 }
