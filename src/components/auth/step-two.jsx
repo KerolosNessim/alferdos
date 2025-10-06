@@ -311,14 +311,10 @@ export default function StepTwo() {
           إنشاء حساب
         </Button>
 
-        <div className="text-center text-xs space-y-1">
-          <p>بتسجيلك فإنك توافق على</p>
-          <Link
-            href="/terms"
-            className="text-secondary-green hover:underline font-semibold"
-          >
-            شروط الاستخدام وسياسة الخصوصية
-          </Link>
+
+        <div className="flex items-center justify-center text-xs gap-1">
+          <p>لديك حساب بالفعل</p>
+          <Link href={'/login'} className="text-secondary-green hover:underline font-semibold"> تسجيل الدخول</Link>
         </div>
       </form>
     </Form>

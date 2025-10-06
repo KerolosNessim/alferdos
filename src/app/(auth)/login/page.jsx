@@ -1,19 +1,15 @@
-"use client"
 import AuthSlider from '@/components/auth/auth-slider'
+import LoginForm from '@/components/auth/login-form'
 import CustomBreadcrumbs from '@/components/shared/custom-breadcrumbs'
 import Footer from '@/components/shared/footer'
 import Navavbar from '@/components/shared/navbar'
-import Image from 'next/image'
-import React, { useState } from 'react'
 import * as motion from 'motion/react-client'
-import StepOne from '@/components/auth/step-one'
-import StepTwo from '@/components/auth/step-two'
+import Image from 'next/image'
 const SignUpPage = () => {
-  const [step, setStep] = useState(1)
   return (
     <>
       <Navavbar withbreadcrumb />
-      <CustomBreadcrumbs items={[{ name: "تسجيل حساب" }]} />
+      <CustomBreadcrumbs items={[{ name: "تسجيل الدخول" }]} />
       <motion.main
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -26,27 +22,16 @@ const SignUpPage = () => {
           {/* content */}
           <div className='text-white text-center space-y-4'>
             <Image src={'/full-logo.jpg'} alt='signup' width={100} height={100} className='w-20 mix-blend-luminosity mx-auto' />
-            <h3 className='text-3xl font-bold'>تسجيل الحساب</h3>
-            <p>يرجي كتابة البيانات الخاصة بك  علي مرحلتين</p>
+            <h3 className='text-3xl font-bold'>تسجيل الدخول</h3>
+            <p>يرجي كتابة البيانات الخاصة لتسجيل الدخول</p>
             <AuthSlider />
           </div>
         </div>
         {/* form */}
         <div className='lg:col-span-3 max-lg:col-span-5 h-full w-full bg-white relative flex items-center justify-center'>
           <div className='lg:w-[60%] md:w-2/3 w-4/5 mx-auto space-y-12'>
-            {/* steps */}
-            <div className='w-50 space-y-4 mx-auto'>
-              <div className='flex items-center justify-between text-xs '>
-                <p className='font-bold text-secondary-green'>الخطوة الاولي</p>
-                <p className={`${step === 2 ? "text-secondary-green" : "text-[#D6D6D6]"}`}>الخطوة الثانيه</p>
-              </div>
-              <div className='flex items-center justify-center'>
-                <div className={`size-3 rounded-full   bg-secondary-green`}></div>
-                <div className='w-30 h-[2px] bg-[#D6D6D6]'></div>
-                <div className={`size-3 rounded-full ${step === 2 ? "bg-secondary-green" : "bg-[#D6D6D6]"} `}></div>
-              </div>
-            </div>
-            {step === 1 ? <StepOne setStep={setStep} /> : <StepTwo />}
+            <h3 className='text-3xl font-bold text-center text-secondary-green'>تسجيل الدخول</h3>
+            <LoginForm />
           </div>
         </div>
       </motion.main>

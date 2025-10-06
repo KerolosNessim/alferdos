@@ -42,13 +42,13 @@ const Navavbar = ({withbreadcrumb=false}) => {
         {/* buttons */}
         <div className='max-md:hidden flex items-center gap-4'>
           <Link href={'/signup'} className="text-text font-bold text-sm hover:text-main-red transition-all duration-300">
-          تسجيل الدخول
+          تسجيل حساب
           </Link>
 
-          <a href='#' className=" border-1 border-green-1 py-2 px-4 rounded text-sm text-green-1 font-bold flex items-center gap-1 w-fit hover:bg-green-1 hover:text-white hover:gap-2 transition-all duration-300">
+          <Link href='/login' className=" border-1 border-green-1 py-2 px-4 rounded text-sm text-green-1 font-bold flex items-center gap-1 w-fit hover:bg-green-1 hover:text-white hover:gap-2 transition-all duration-300">
             <IoIosArrowRoundForward size={20} />
-            <span >إنضم الينا</span>
-          </a>
+            <span >تسجيل الدخول</span>
+          </Link>
         </div>
         <Sheet>
           <SheetTrigger className="md:hidden border-1 border-green-1 py-2 px-4 rounded text-sm text-green-1 font-bold flex items-center gap-1 w-fit hover:bg-green-1 hover:text-white hover:gap-2 transition-all duration-300">
@@ -75,13 +75,13 @@ const Navavbar = ({withbreadcrumb=false}) => {
                 {/* buttons */}
                 <div className='flex items-center justify-center gap-4'>
                   <Link href={'/signup'} className="text-text font-bold text-sm hover:text-main-red transition-all duration-300">
-                    تسجيل الدخول
+                    تسجيل حساب
                   </Link>
 
-                  <a href='#' className=" border-1 border-green-1 py-2 px-4 rounded text-sm text-green-1 font-bold flex items-center gap-1 w-fit hover:bg-green-1 hover:text-white hover:gap-2 transition-all duration-300">
+                  <Link href='/login' className=" border-1 border-green-1 py-2 px-4 rounded text-sm text-green-1 font-bold flex items-center gap-1 w-fit hover:bg-green-1 hover:text-white hover:gap-2 transition-all duration-300">
                     <IoIosArrowRoundForward size={20} />
-                    <span >إنضم الينا</span>
-                  </a>
+                    <span >تسجيل الدخول</span>
+                  </Link>
                 </div>
               </SheetDescription>
             </SheetHeader>

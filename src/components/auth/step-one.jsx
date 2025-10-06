@@ -60,9 +60,9 @@ const StepOne = ({ setStep }) => {
           )}
         />
         <Button type="submit" className={"w-full bg-secondary-green h-13"}>التالي</Button>
-        <div className="text-center text-xs space-y-1">
-          <p>بتسجيلك فإنك توافق علي</p>
-          <Link href={'/terms'} className="text-secondary-green hover:underline font-semibold"> شروط الإستخدام وسياسة الخصوصية</Link>
+        <div className="flex items-center justify-center text-xs gap-1">
+          <p>لديك حساب بالفعل</p>
+          <Link href={'/login'} className="text-secondary-green hover:underline font-semibold"> تسجيل الدخول</Link>
         </div>
       </form>
     </Form>
