@@ -1,6 +1,9 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { usePathname } from 'next/navigation'
 import { IoIosArrowRoundForward } from 'react-icons/io'
 import * as motion from 'motion/react-client'
 import {
@@ -13,7 +16,17 @@ import {
 } from "@/components/ui/sheet"
 import { GiHamburgerMenu } from "react-icons/gi";
 
-const Navavbar = ({withbreadcrumb=false}) => {
+const Navavbar = ({ withbreadcrumb = false }) => {
+  const pathname = usePathname()
+
+  const navLinks = [
+    { name: 'الرئيسية', href: '/' },
+    { name: 'أوائل الطلبة', href: '/students' },
+    { name: 'إنجازاتنا', href: '/achevments' },
+    { name: 'الفعاليات', href: '/events' },
+    { name: 'المدونة', href: '/blogs' },
+  ]
+
   return (
     <div className={`bg-bg-green ${withbreadcrumb && 'pb-20'}`}>
       <motion.div
@@ -29,20 +42,29 @@ const Navavbar = ({withbreadcrumb=false}) => {
 
         {/* links */}
         <nav className='max-md:hidden'>
-          <ul className='text-text-gray  flex items-start gap-6 '>
-            <li><Link href={'/'} className='text-text text-sm font-bold'>الرئيسية</Link>
-            <Image src="/nav.svg" width={1000} height={1000} alt="logo" className='w-8 mt-2' />
-            </li>
-            <li><Link href={'/'} className=' text-sm '>أوائل الطلبة</Link></li>
-            <li><Link href={'/'} className=' text-sm '>إنجازاتنا</Link></li>
-            <li><Link href={'/'} className=' text-sm '>الفعاليات</Link></li>
-            <li><Link href={'/'} className=' text-sm '>المدونة</Link></li>
+          <ul className='flex items-start gap-6'>
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href
+              return (
+                <li key={link.href} className='relative'>
+                  <Link 
+                    href={link.href} 
+                    className={`text-sm ${isActive ? 'text-text font-bold' : 'text-text-gray'}`}
+                  >
+                    {link.name}
+                  </Link>
+                  { isActive && (
+                    <Image src="/nav.svg" width={1000} height={1000} alt="logo" className='w-8 mt-2' />
+                  )}
+                </li>
+              )
+            })}
           </ul>
         </nav>
         {/* buttons */}
         <div className='max-md:hidden flex items-center gap-4'>
           <Link href={'/signup'} className="text-text font-bold text-sm hover:text-main-red transition-all duration-300">
-          تسجيل حساب
+            تسجيل حساب
           </Link>
 
           <Link href='/login' className=" border-1 border-green-1 py-2 px-4 rounded text-sm text-green-1 font-bold flex items-center gap-1 w-fit hover:bg-green-1 hover:text-white hover:gap-2 transition-all duration-300">
@@ -62,14 +84,23 @@ const Navavbar = ({withbreadcrumb=false}) => {
               <SheetDescription className={"space-y-12"}>
                 {/* links */}
                 <nav>
-                  <ul className='text-text-gray  flex flex-col items-center gap-6 '>
-                    <li><Link href={'/'} className='text-text text-sm font-bold'>الرئيسية</Link>
-                      <Image src="/nav.svg" width={1000} height={1000} alt="logo" className='w-8 mt-2' />
-                    </li>
-                    <li><Link href={'/'} className=' text-sm '>أوائل الطلبة</Link></li>
-                    <li><Link href={'/'} className=' text-sm '>إنجازاتنا</Link></li>
-                    <li><Link href={'/'} className=' text-sm '>الفعاليات</Link></li>
-                    <li><Link href={'/'} className=' text-sm '>المدونة</Link></li>
+                  <ul className='flex flex-col items-center gap-6'>
+                    {navLinks.map((link) => {
+                      const isActive = pathname === link.href
+                      return (
+                        <li key={link.href} className='relative flex flex-col items-center'>
+                          <Link 
+                            href={link.href} 
+                            className={`text-sm ${isActive ? 'text-text font-bold' : 'text-text-gray'}`}
+                          >
+                            {link.name}
+                          </Link>
+                          { isActive && (
+                            <Image src="/nav.svg" width={1000} height={1000} alt="logo" className='w-8 mt-2' />
+                          )}
+                        </li>
+                      )
+                    })}
                   </ul>
                 </nav>
                 {/* buttons */}

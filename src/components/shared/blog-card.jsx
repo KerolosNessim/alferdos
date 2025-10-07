@@ -15,7 +15,7 @@ const BlogCard = () => {
         <h3 className='text-text text-sm  font-bold'>عنوان المقالة هنا</h3>
         <p className='text-[10px] text-text-gray leading-6 line-clamp-2'>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص</p>
         {/* link */}
-        <Link href={'/'} className=" border-1 border-main-red p-2 rounded text-xs text-green-1 font-bold flex items-center gap-1 w-fit hover:bg-main-red hover:text-white hover:gap-2 transition-all duration-300">
+        <Link href={'/blogs/1'} className=" border-1 border-main-red p-2 rounded text-xs text-green-1 font-bold flex items-center gap-1 w-fit hover:bg-main-red hover:text-white hover:gap-2 transition-all duration-300">
           <IoIosArrowForward className='text-main-yellow' size={18} />
           <span >قراءة المزيد</span>
         </Link>
