@@ -9,7 +9,7 @@ import { useEffect, useState } from "react"
 import BlogCard from "./blog-card"
 import Autoplay from "embla-carousel-autoplay"
 
-export default function BlogsSlider() {
+export default function BlogsSlider({data}) {
   const [api, setApi] = useState()
   const [current, setCurrent] = useState(0)
   const [count, setCount] = useState(0)
@@ -46,9 +46,9 @@ export default function BlogsSlider() {
           align: "start"
         }} setApi={setApi} >
           <CarouselContent >
-            {Array.from({ length: 7 }).map((_, index) => (
+            {data?.map((item, index) => (
               <CarouselItem key={index} className={"basis-[90%] md:basis-1/2 lg:basis-1/4 "}>
-                <BlogCard  />
+                <BlogCard item={item}  />
               </CarouselItem>
             ))}
           </CarouselContent>

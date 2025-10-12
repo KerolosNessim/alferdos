@@ -15,6 +15,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { GiHamburgerMenu } from "react-icons/gi";
+import AuthLinks from './auth-links'
 
 const Navavbar = ({ withbreadcrumb = false }) => {
   const pathname = usePathname()
@@ -47,13 +48,13 @@ const Navavbar = ({ withbreadcrumb = false }) => {
               const isActive = pathname === link.href
               return (
                 <li key={link.href} className='relative'>
-                  <Link 
-                    href={link.href} 
+                  <Link
+                    href={link.href}
                     className={`text-sm ${isActive ? 'text-text font-bold' : 'text-text-gray'}`}
                   >
                     {link.name}
                   </Link>
-                  { isActive && (
+                  {isActive && (
                     <Image src="/nav.svg" width={1000} height={1000} alt="logo" className='w-8 mt-2' />
                   )}
                 </li>
@@ -62,15 +63,8 @@ const Navavbar = ({ withbreadcrumb = false }) => {
           </ul>
         </nav>
         {/* buttons */}
-        <div className='max-md:hidden flex items-center gap-4'>
-          <Link href={'/signup'} className="text-text font-bold text-sm hover:text-main-red transition-all duration-300">
-            تسجيل حساب
-          </Link>
-
-          <Link href='/login' className=" border-1 border-green-1 py-2 px-4 rounded text-sm text-green-1 font-bold flex items-center gap-1 w-fit hover:bg-green-1 hover:text-white hover:gap-2 transition-all duration-300">
-            <IoIosArrowRoundForward size={20} />
-            <span >تسجيل الدخول</span>
-          </Link>
+        <div className='max-md:hidden '>
+          <AuthLinks />
         </div>
         <Sheet>
           <SheetTrigger className="md:hidden border-1 border-green-1 py-2 px-4 rounded text-sm text-green-1 font-bold flex items-center gap-1 w-fit hover:bg-green-1 hover:text-white hover:gap-2 transition-all duration-300">
@@ -89,13 +83,13 @@ const Navavbar = ({ withbreadcrumb = false }) => {
                       const isActive = pathname === link.href
                       return (
                         <li key={link.href} className='relative flex flex-col items-center'>
-                          <Link 
-                            href={link.href} 
+                          <Link
+                            href={link.href}
                             className={`text-sm ${isActive ? 'text-text font-bold' : 'text-text-gray'}`}
                           >
                             {link.name}
                           </Link>
-                          { isActive && (
+                          {isActive && (
                             <Image src="/nav.svg" width={1000} height={1000} alt="logo" className='w-8 mt-2' />
                           )}
                         </li>
@@ -104,15 +98,8 @@ const Navavbar = ({ withbreadcrumb = false }) => {
                   </ul>
                 </nav>
                 {/* buttons */}
-                <div className='flex items-center justify-center gap-4'>
-                  <Link href={'/signup'} className="text-text font-bold text-sm hover:text-main-red transition-all duration-300">
-                    تسجيل حساب
-                  </Link>
-
-                  <Link href='/login' className=" border-1 border-green-1 py-2 px-4 rounded text-sm text-green-1 font-bold flex items-center gap-1 w-fit hover:bg-green-1 hover:text-white hover:gap-2 transition-all duration-300">
-                    <IoIosArrowRoundForward size={20} />
-                    <span >تسجيل الدخول</span>
-                  </Link>
+                <div className=''>
+                  <AuthLinks />
                 </div>
               </SheetDescription>
             </SheetHeader>

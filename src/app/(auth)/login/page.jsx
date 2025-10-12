@@ -3,6 +3,7 @@ import LoginForm from '@/components/auth/login-form'
 import CustomBreadcrumbs from '@/components/shared/custom-breadcrumbs'
 import Footer from '@/components/shared/footer'
 import Navavbar from '@/components/shared/navbar'
+import { Button } from '@/components/ui/button'
 import * as motion from 'motion/react-client'
 import Image from 'next/image'
 const SignUpPage = () => {
@@ -31,6 +32,12 @@ const SignUpPage = () => {
         <div className='lg:col-span-3 max-lg:col-span-5 h-full w-full bg-white relative flex items-center justify-center'>
           <div className='lg:w-[60%] md:w-2/3 w-4/5 mx-auto space-y-12'>
             <h3 className='text-3xl font-bold text-center text-secondary-green'>تسجيل الدخول</h3>
+            <div className='flex items-center gap-4 justify-center'>
+              <Button className={"bg-secondary-green text-white px-8 h-12"}>طالب</Button>
+              <Button className={"bg-main-yellow text-white px-8 h-12"}>ولي أمر</Button>
+              <Button className={"bg-main-red text-white px-8 h-12"}>مدرس</Button>
+
+            </div>
             <LoginForm />
           </div>
         </div>

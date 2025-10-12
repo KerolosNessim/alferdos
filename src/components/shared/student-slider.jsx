@@ -11,7 +11,7 @@ import StudentCard from "./student-card"
 import { motion, AnimatePresence } from "framer-motion"
 import Autoplay from "embla-carousel-autoplay"
 
-export default function StudentSlider() {
+export default function StudentSlider({data}) {
   const [api, setApi] = useState()
   const [current, setCurrent] = useState(0)
   const [count, setCount] = useState(0)
@@ -48,9 +48,9 @@ export default function StudentSlider() {
         align:"start"
       }} setApi={setApi} className="w-full ">
         <CarouselContent className={"lg:w-[90%] ms-auto max-lg:container "}>
-          {Array.from({ length: 5 }).map((_, index) => (
+            {data.map((item, index) => (
             <CarouselItem key={index} className={"basis-[90%] md:basis-[48%] lg:basis-[28%] "}>
-              <StudentCard index={index+1} />
+              <StudentCard index={index+1} item={item} />
             </CarouselItem>
           ))}
         </CarouselContent>

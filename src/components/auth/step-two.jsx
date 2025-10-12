@@ -148,7 +148,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { TbEyeClosed, TbEye } from "react-icons/tb";
 import { useState, useEffect } from "react";
-import { Check, X } from "lucide-react";
+import { Check, Loader2, X } from "lucide-react";
+import { postData } from "@/lib/fetch-methods";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z
   .object({
@@ -163,7 +166,8 @@ const FormSchema = z
     path: ["confirm_password"],
   });
 
-export default function StepTwo() {
+export default function StepTwo({ firstToken }) {
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -171,6 +175,7 @@ export default function StepTwo() {
   const [checks, setChecks] = useState({
     length: false,
     upper: false,
+    lower: false,
     number: false,
     special: false,
   });
@@ -183,18 +188,31 @@ export default function StepTwo() {
       confirm_password: "",
     },
   });
-
+const { isSubmitting } = form.formState
   useEffect(() => {
     setChecks({
       length: password.length >= 8,
       upper: /[A-Z]/.test(password),
+      lower: /[a-z]/.test(password),
       number: /\d/.test(password),
       special: /[!@#$%^&*(),.?":{}|<>]/.test(password),
     });
   }, [password]);
 
-  function onSubmit(values) {
-    console.log(values);
+  async function onSubmit(values) {
+    const res = await postData({
+      url: "/registration/step2",
+      data: values,
+      token: firstToken,
+      isFormData: true,
+    });
+    if (res.code == 200) {
+      toast.success("تم التسجيل بنجاح")
+      router.push("/login")
+    }else{
+      toast.error("حدث خطأ حاول مرة اخري")
+      router.refresh()
+    }
   }
 
   return (
@@ -304,11 +322,12 @@ export default function StepTwo() {
         <div className="mt-2 space-y-1 text-xs">
           <PasswordCheck label="تحتوي على 8 أحرف أو أكثر" ok={checks.length} />
           <PasswordCheck label="تحتوي على حرف كبير" ok={checks.upper} />
+          <PasswordCheck label="تحتوي على حرف صغير" ok={checks.lower} />
           <PasswordCheck label="تحتوي على رقم" ok={checks.number} />
           <PasswordCheck label="تحتوي على رمز خاص" ok={checks.special} />
         </div>
-        <Button type="submit" className="w-full bg-secondary-green h-13">
-          إنشاء حساب
+        <Button disabled={isSubmitting} type="submit" className="w-full bg-secondary-green h-13">
+          {isSubmitting ? <Loader2 className=" h-4 w-4 animate-spin" /> : "إنشاء حساب"}
         </Button>
 
 

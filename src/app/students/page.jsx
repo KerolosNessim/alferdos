@@ -3,9 +3,18 @@ import Footer from '@/components/shared/footer'
 import Navavbar from '@/components/shared/navbar'
 import StudentGrid from '@/components/shared/student-grid'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { getData } from '@/lib/fetch-methods'
 import * as motion from 'motion/react-client'
-const StudentsPage = () => {
+const StudentsPage = async () => {
   const tabStyle = `relative text-base rounded-none  data-[state=active]:shadow-none data-[state=active]:text-secondary-green data-[state=active]:font-bold data-[state=active]:before:w-[65%] data-[state=active]:before:h-1 data-[state=active]:before:bg-main-red data-[state=active]:before:absolute data-[state=active]:before:-bottom-1 data-[state=active]:before:right-0  data-[state=active]:before:absolute p-0 mx-4`
+    let data
+    const res = await getData({ url: "/top-students" })
+    if (res.code == 200) {
+      data = res?.data?.data
+    }
+    else {
+      data = []
+    }
   return (
     <>
       <Navavbar withbreadcrumb />
@@ -27,13 +36,13 @@ const StudentsPage = () => {
               </TabsList>
             </motion.div>
             <TabsContent value="prim">
-              <StudentGrid/>
+              <StudentGrid data={data?.prim}/>
             </TabsContent>
             <TabsContent value="prep">
-              <StudentGrid/>
+              <StudentGrid data={data?.prep}/>
             </TabsContent>
             <TabsContent value="sec">
-              <StudentGrid/>
+              <StudentGrid data={data?.sec}/>
             </TabsContent>
           </Tabs>
 

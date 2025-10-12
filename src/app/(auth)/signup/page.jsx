@@ -10,6 +10,7 @@ import StepOne from '@/components/auth/step-one'
 import StepTwo from '@/components/auth/step-two'
 const SignUpPage = () => {
   const [step, setStep] = useState(1)
+  const [firstToken, setFirstToken] = useState(null)
   return (
     <>
       <Navavbar withbreadcrumb />
@@ -46,7 +47,7 @@ const SignUpPage = () => {
                 <div className={`size-3 rounded-full ${step === 2 ? "bg-secondary-green" : "bg-[#D6D6D6]"} `}></div>
               </div>
             </div>
-            {step === 1 ? <StepOne setStep={setStep} /> : <StepTwo />}
+            {step === 1 ? <StepOne setStep={setStep} setFirstToken={setFirstToken} /> : <StepTwo firstToken={firstToken} />}
           </div>
         </div>
       </motion.main>

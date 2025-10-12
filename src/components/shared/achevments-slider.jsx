@@ -12,7 +12,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import AchevmentsCard from "./achevment-card"
 import Autoplay from "embla-carousel-autoplay"
 
-export default function AchevmentsSlider() {
+export default function AchevmentsSlider({ data }) {
   const [api, setApi] = useState()
   const [current, setCurrent] = useState(0)
   const [count, setCount] = useState(0)
@@ -54,9 +54,9 @@ export default function AchevmentsSlider() {
             align: "center"
           }} setApi={setApi} >
           <CarouselContent >
-            {Array.from({ length: 6 }).map((_, index) => (
+            {data?.map((item, index) => (
               <CarouselItem key={index} className={"basis-[90%] md:basis-[48%] lg:basis-1/3 "}>
-                <AchevmentsCard index={index + 1} color={colors[index % colors.length]} />
+                <AchevmentsCard item={item} index={index + 1} color={colors[index % colors.length]} />
               </CarouselItem>
             ))}
           </CarouselContent>

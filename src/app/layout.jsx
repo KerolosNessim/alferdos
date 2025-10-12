@@ -1,6 +1,6 @@
 import { Alexandria } from "next/font/google";
 import "./globals.css";
-
+import { Toaster } from "@/components/ui/sonner"
 
 const alex=Alexandria({
   subsets: ["latin"],
@@ -22,6 +22,7 @@ export default function RootLayout({ children }) {
         className={`${alex.className} `}
       >
         {children}
+        <Toaster position="top-center" richColors dir="rtl" />
       </body>
     </html>
   );
