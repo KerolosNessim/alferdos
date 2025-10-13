@@ -6,7 +6,8 @@ import Image from 'next/image'
 
 const links = [
   { href: '/teacher', label: 'الملف الشخصي' },
-  { href: '/teacher/resultes', label: 'النتائج' },
+  { href: '/teacher/resultes', label: 'النتائج الاسبوعيه' },
+  { href: '/teacher/students-resultes', label: 'تقييمات الطلاب' },
 ]
 
 const TeacherNavbar = () => {

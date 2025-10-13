@@ -28,8 +28,8 @@ const TeacherLayout = ({ children }) => {
               <div className='lg:size-24 size-20 border-3 border-main-red rounded-full absolute top-[45%] left-[45%] -translate-1/2 -z-1'></div>
             </div>
             <div className='text-center space-y-0.5'>
-              <h3 className='text-lg font-bold  text-text'>مهدي سعيد</h3>
-              <p className='text-[10px] text-text-gray'>مدرس الرياضيات</p>
+              <h3 className='text-lg font-bold  text-text'>محمد الجندي</h3>
+              <p className='text-[10px] text-text-gray'>مدرس Maths</p>
             </div>
           </div>
           {/* menu */}
