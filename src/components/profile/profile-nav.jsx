@@ -8,6 +8,7 @@ const links = [
   { href: '/profile', label: 'الملف الشخصي' },
   { href: '/profile/resultes', label: 'النتائج' },
   { href: '/profile/table', label: 'الجدول الدراسي' },
+  { href: '/profile/statistics', label: 'الإحصائيات' },
 ]
 
 const ProfileNavbar = () => {
