@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { TbEyeClosed, TbEye } from "react-icons/tb";
 import { useState } from "react"
-import { setToken } from "@/services"
+import { setRole, setToken } from "@/services"
 import { postData } from "@/lib/fetch-methods"
 import { toast } from "sonner"
 import { Loader2 } from "lucide-react"
@@ -51,6 +51,7 @@ const LoginForm = () => {
       setToken(res?.data?.data?.token)
       setUser(res?.data?.data)
       setTokenStore(res?.data?.data?.token)
+      setRole(res?.data?.data?.role)
       setTimeout(() => {
         router.push("/")
       }, 1000);

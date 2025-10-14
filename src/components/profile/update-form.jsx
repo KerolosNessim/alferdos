@@ -13,45 +13,26 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { TbEyeClosed, TbEye, TbEdit } from "react-icons/tb";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { useProfileStore } from "@/stores/profileStore";
 
 const studentSchema = z.object({
-  status: z.string().nonempty("حالة القيد مطلوبة"),
-  religion: z.string().nonempty("الديانة مطلوبة"),
-  phone: z.string().nonempty("رقم الهاتف مطلوب"),
-  code: z.string().nonempty("الكود مطلوب"),
-  nationalId: z.string().nonempty("الرقم القومي مطلوب"),
-  paymentDate: z.string().nonempty("تاريخ السداد مطلوب"),
-  receiptNumber: z.string().nonempty("رقم القسيمة مطلوب"),
-  fees: z.string().nonempty("الرسوم المدرسية مطلوبة"),
-  transfer: z.string().nonempty("بيان التحويلات مطلوب"),
-  classNumber: z.string().nonempty("رقم الفصل مطلوب"),
-  parentPhone: z.string().nonempty("رقم هاتف ولي الأمر مطلوب"),
-  parentJob: z.string().nonempty("عمل ولي الأمر مطلوب"),
-  parentAddress: z.string().nonempty("عنوان ولي الأمر مطلوب"),
-  parentNationalId: z.string().nonempty("الرقم القومي لولي الأمر مطلوب"),
-  paymentAmount: z.string().nonempty("مبلغ السداد مطلوب"),
-  password: z.string().nonempty("الرقم السري مطلوب"),
+  status: z.string().optional(),
+  religion: z.string().optional(),
+  phone: z.string().optional(),
+  code: z.string().optional(),
+  nationalId: z.string().optional(),
+  paymentDate: z.string().optional(),
+  receiptNumber: z.string().optional(),
+  fees: z.string().optional(),
+  transfer: z.string().optional(),
+  classNumber: z.string().optional(),
+  parentPhone: z.string().optional(),
+  parentJob: z.string().optional(),
+  parentAddress: z.string().optional(),
+  parentNationalId: z.string().optional(),
+  paymentAmount: z.string().optional(),
 });
-
-const defaultValues = {
-  status: "مقيد",
-  religion: "مسلم",
-  phone: "01034678890",
-  code: "234455",
-  nationalId: "045543342221",
-  paymentDate: "17/2/2025",
-  receiptNumber: "34435",
-  fees: "712 م",
-  transfer: "لا يوجد",
-  classNumber: "4",
-  parentPhone: "01034678890",
-  parentJob: "مدير بنك البركة",
-  parentAddress: "اسم المبني، الشارع، المدينة",
-  parentNationalId: "045543342221",
-  paymentAmount: "500 م",
-  password: "",
-};
 
 const fields = [
   { name: "status", label: "حالة القيد", type: "text" },
@@ -72,18 +53,37 @@ const fields = [
 ];
 
 const UpdateForm = () => {
+  const { profileData } = useProfileStore();
   const [isEditable, setIsEditable] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+
+  // 🧠 تحويل داتا الـ profileData لصيغة form
+  const initialValues = useMemo(() => ({
+    status: profileData?.personal_info?.status || "",
+    religion: profileData?.personal_info?.religion || "",
+    phone: profileData?.personal_info?.phone || "",
+    code: profileData?.personal_info?.student_code || "",
+    nationalId: profileData?.personal_info?.national_id || "",
+    paymentDate: profileData?.academic_info?.payment_date || "",
+    receiptNumber: profileData?.academic_info?.payment_receipt_number || "",
+    fees: profileData?.academic_info?.school_fees?.toString() || "",
+    transfer: profileData?.academic_info?.school_transfers || "",
+    classNumber: profileData?.academic_info?.classroom_number?.toString() || "",
+    parentPhone: profileData?.parent_info?.father_phone || "",
+    parentJob: profileData?.parent_info?.father_job || "",
+    parentAddress: profileData?.address_info?.guardian_address || "",
+    parentNationalId: profileData?.parent_info?.father_national_id || "",
+    paymentAmount: profileData?.academic_info?.payment_amount?.toString() || "",
+  }), [profileData]);
 
   const form = useForm({
     resolver: zodResolver(studentSchema),
-    defaultValues,
+    defaultValues: initialValues,
     mode: "onTouched",
   });
 
   const onSubmit = (values) => {
-    console.log("بيانات الطالب:", values);
-    // هنا ممكن تعمل call للـ API لعمل تحديث البيانات
+    console.log("بيانات محدثة:", values);
+    // Call API هنا
     setIsEditable(false);
     setShowPassword(false);
   };
@@ -101,7 +101,6 @@ const UpdateForm = () => {
                   <FormItem>
                     <FormLabel className="font-normal">{label}</FormLabel>
                     <FormControl>
-                      {/* خاص بالـ phone لو حابب تحافظ على البادئة */}
                       {name === "phone" || name === "parentPhone" ? (
                         <div className="relative">
                           <p className="absolute top-1/2 left-2 transform -translate-y-1/2 p-2 border-r text-sm bg-transparent">
@@ -111,8 +110,7 @@ const UpdateForm = () => {
                             {...field}
                             type={type}
                             disabled={!isEditable}
-                            className={`h-12 shadow-md mt-1 pl-14 ${isEditable ? "bg-white" : "bg-bg-green"
-                              }`}
+                            className={`h-12 shadow-md mt-1 pl-14 ${isEditable ? "bg-white" : "bg-bg-green"}`}
                           />
                         </div>
                       ) : (
@@ -120,8 +118,7 @@ const UpdateForm = () => {
                           {...field}
                           type={type}
                           disabled={!isEditable}
-                          className={`h-12 shadow-md mt-1 ${isEditable ? "bg-white" : "bg-bg-green"
-                            }`}
+                          className={`h-12 shadow-md mt-1 ${isEditable ? "bg-white" : "bg-bg-green"}`}
                         />
                       )}
                     </FormControl>
@@ -132,53 +129,10 @@ const UpdateForm = () => {
             </div>
           ))}
 
-          {/* حقل الرقم السري منفصل عشان نضيف أيقونة show/hide بداخل الحقل */}
-          <div className="w-full md:w-[48%]">
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-normal">الرقم السري</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      {/* أيقونة سوداء داخل الحقل على الجهة اليسرى (RTL) */}
-                      {showPassword ? (
-                        <TbEye
-                          role="button"
-                          aria-label="اخفاء الرقم السري"
-                          size={18}
-                          className="absolute top-1/2 left-3 transform -translate-y-1/2 cursor-pointer text-black"
-                          onClick={() => setShowPassword(false)}
-                        />
-                      ) : (
-                        <TbEyeClosed
-                          role="button"
-                          aria-label="عرض الرقم السري"
-                          size={18}
-                          className="absolute top-1/2 left-3 transform -translate-y-1/2 cursor-pointer text-black"
-                          onClick={() => setShowPassword(true)}
-                        />
-                      )}
 
-                      <Input
-                        {...field}
-                        type={showPassword ? "text" : "password"}
-                        disabled={!isEditable}
-                        placeholder="الرقم السري الخاص بك"
-                        className={`h-12 shadow-md mt-1 pl-11 ${isEditable ? "bg-white" : "bg-bg-green"
-                          }`}
-                      />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
         </div>
 
-        {/* أزرار التحكم */}
+        {/* الأزرار */}
         <div className="flex gap-3 pt-4">
           {isEditable ? (
             <>
@@ -190,7 +144,7 @@ const UpdateForm = () => {
                 variant="outline"
                 className="h-12"
                 onClick={() => {
-                  form.reset(defaultValues);
+                  form.reset(initialValues);
                   setIsEditable(false);
                   setShowPassword(false);
                 }}

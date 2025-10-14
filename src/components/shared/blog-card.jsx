@@ -13,9 +13,9 @@ const BlogCard = ({item}) => {
       {/* content */}
       <div className='space-y-8 p-4'>
         <h3 className='text-text text-sm  font-bold line-clamp-1'>{item?.title||'عنوان المقالة هنا' }</h3>
-        <p className='text-[10px] text-text-gray leading-6 line-clamp-2'>{item?.description||'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص'}</p>
+        <div className='text-[10px] text-text-gray leading-6 line-clamp-2' dangerouslySetInnerHTML={{__html:item?.description||'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص' }}></div>
         {/* link */}
-        <Link href={'/blogs/1'} className=" border-1 border-main-red p-2 rounded text-xs text-green-1 font-bold flex items-center gap-1 w-fit hover:bg-main-red hover:text-white hover:gap-2 transition-all duration-300">
+        <Link href={'/'} className=" border-1 border-main-red p-2 rounded text-xs text-green-1 font-bold flex items-center gap-1 w-fit hover:bg-main-red hover:text-white hover:gap-2 transition-all duration-300">
           <IoIosArrowForward className='text-main-yellow' size={18} />
           <span >قراءة المزيد</span>
         </Link>

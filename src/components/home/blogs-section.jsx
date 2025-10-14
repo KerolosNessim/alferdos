@@ -21,7 +21,6 @@ const BlogsSection = async () => {
     <>
       {
         data?.length > 0 ? (
-
           <section className=' border-t-2 border-main-red/10'>
             <div className='pt-20 container space-y-8'>
               <motion.div

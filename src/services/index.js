@@ -22,3 +22,23 @@ export async function removeToken() {
   const cookieStore = await cookies();
   cookieStore.delete("token");
 }
+export async function setRole(role) {
+  const cookieStore = await cookies();
+  cookieStore.set("role", role, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7,
+  });
+}
+
+export async function getRole() {
+  const cookieStore = await cookies();
+  return cookieStore.get("role")?.value || null;
+}
+
+export async function removeRole() {
+  const cookieStore = await cookies();
+  cookieStore.delete("role");
+}

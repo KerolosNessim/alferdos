@@ -44,7 +44,7 @@ const StepOne = ({ setStep, setFirstToken }) => {
       }, 1000);
     }
     else {
-      toast.error("الرقم القومي او الكود غير صحيح")
+      toast.error(res?.data?.message)
     }
   }
   return (

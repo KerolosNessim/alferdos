@@ -22,10 +22,10 @@ const Navavbar = ({ withbreadcrumb = false }) => {
 
   const navLinks = [
     { name: 'الرئيسية', href: '/' },
-    { name: 'أوائل الطلبة', href: '/students' },
-    { name: 'إنجازاتنا', href: '/achevments' },
-    { name: 'الفعاليات', href: '/events' },
-    { name: 'المدونة', href: '/blogs' },
+    { name: 'أوائل الطلبة', href: '/' },
+    { name: 'إنجازاتنا', href: '/' },
+    { name: 'الفعاليات', href: '/' },
+    { name: 'المدونة', href: '/' },
   ]
 
   return (
@@ -44,10 +44,10 @@ const Navavbar = ({ withbreadcrumb = false }) => {
         {/* links */}
         <nav className='max-md:hidden'>
           <ul className='flex items-start gap-6'>
-            {navLinks.map((link) => {
+            {navLinks.map((link,index) => {
               const isActive = pathname === link.href
               return (
-                <li key={link.href} className='relative'>
+                <li key={index} className='relative'>
                   <Link
                     href={link.href}
                     className={`text-sm ${isActive ? 'text-text font-bold' : 'text-text-gray'}`}

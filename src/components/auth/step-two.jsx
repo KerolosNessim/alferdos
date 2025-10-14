@@ -152,6 +152,8 @@ import { Check, Loader2, X } from "lucide-react";
 import { postData } from "@/lib/fetch-methods";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "@/stores/userStore";
+import { setRole, setToken } from "@/services";
 
 const FormSchema = z
   .object({
@@ -171,6 +173,7 @@ export default function StepTwo({ firstToken }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [password, setPassword] = useState("");
+  const {setUser}=useUserStore()
 
   const [checks, setChecks] = useState({
     length: false,
@@ -208,7 +211,10 @@ const { isSubmitting } = form.formState
     });
     if (res.code == 200) {
       toast.success("تم التسجيل بنجاح")
-      router.push("/login")
+      setUser(res?.data?.data)
+      setToken(res?.data?.data?.token)
+      setRole(res?.data?.data?.role)
+      router.push("/")
     }else{
       toast.error("حدث خطأ حاول مرة اخري")
       router.refresh()
