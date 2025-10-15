@@ -42,3 +42,4 @@ export async function removeRole() {
   const cookieStore = await cookies();
   cookieStore.delete("role");
 }
+

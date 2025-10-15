@@ -12,10 +12,12 @@ import { motion, AnimatePresence } from "framer-motion"
 import AchevmentsCard from "./achevment-card"
 import Autoplay from "embla-carousel-autoplay"
 
-export default function AchevmentsSlider({ data }) {
+export default function AchevmentsSlider({data}) {
   const [api, setApi] = useState()
   const [current, setCurrent] = useState(0)
   const [count, setCount] = useState(0)
+
+
 
   useEffect(() => {
     if (!api) return

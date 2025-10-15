@@ -28,10 +28,10 @@ const FormSchema = z.object({
   password: z.string().nonempty({ message: "الكود مطلوب" }),
 })
 
-const LoginForm = () => {
+const LoginForm = ({ role }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
-  const {setToken:setTokenStore ,setUser} = useUserStore()
+  const { setToken: setTokenStore, setUser } = useUserStore()
   const router = useRouter()
   const form = useForm({
     resolver: zodResolver(FormSchema),
@@ -42,9 +42,13 @@ const LoginForm = () => {
   })
   const { isSubmitting } = form.formState
   async function onSubmit(values) {
+    const data = {
+      ...values,
+      role
+    }
     const res = await postData({
       url: "/login",
-      data: values,
+      data,
     })
     if (res.code == 200) {
       toast.success("تم تسجيل الدخول بنجاح")
@@ -56,7 +60,7 @@ const LoginForm = () => {
         router.push("/")
       }, 1000);
     } else {
-      toast.error("حدث خطأ حاول مرة اخري")
+      toast.error(res?.data?.message)
       router.refresh()
     }
   }
@@ -70,7 +74,7 @@ const LoginForm = () => {
             <FormItem>
               <FormLabel className={"font-normal"}>الرقم القومي</FormLabel>
               <FormControl>
-                <Input className={"h-13 placeholder:text-xs shadow-md mt-1"} type="number" placeholder="الرقم القومي الخاص بك"  {...field} />
+                <Input disabled={!role || role.trim() === ""} className={"h-13 placeholder:text-xs shadow-md mt-1"} type="number" placeholder="الرقم القومي الخاص بك"  {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -100,6 +104,7 @@ const LoginForm = () => {
 
                   <FormControl>
                     <Input
+                      disabled={!role || role.trim() === ""}
                       className="h-13 placeholder:text-xs shadow-md mt-1"
                       type={showPassword ? "text" : "password"}
                       placeholder="الرقم السري الخاص بك"
