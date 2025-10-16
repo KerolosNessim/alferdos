@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 const links = [
   { href: '/teacher', label: 'الملف الشخصي' },
@@ -12,6 +13,11 @@ const links = [
 
 const TeacherNavbar = () => {
   const pathname = usePathname()
+  const router = useRouter()
+
+  const handleLogout = () => {
+    router.push('/')
+  }
 
   return (
     <nav className="text-center w-full">
@@ -59,7 +65,7 @@ const TeacherNavbar = () => {
         })}
 
         <li className="flex-shrink-0">
-          <button className="text-text hover:text-secondary-green">
+          <button onClick={handleLogout} className="text-text hover:text-secondary-green">
             تسجيل الخروج
           </button>
         </li>

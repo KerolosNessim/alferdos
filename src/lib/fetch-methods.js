@@ -38,7 +38,7 @@ export async function getData({ url, withToken = true, token = null }) {
     const headers = await getHeaders({ isFormData: false, withToken, token });
 
     const response = await fetch(
-      `https://school-management.prower.store/api${url}`,
+      `https://school-template.subcodeco.com/api${url}`,
       {
         method: "GET",
         headers,
@@ -75,7 +75,7 @@ export async function postData({
     const body = isFormData ? getFormData(data) : JSON.stringify(data);
 
     const response = await fetch(
-      `https://school-management.prower.store/api${url}`,
+      `https://school-template.subcodeco.com/api${url}`,
       {
         method: "POST",
         headers,
@@ -113,7 +113,7 @@ export async function putData({
     const body = isFormData ? getFormData(data) : JSON.stringify(data);
 
     const response = await fetch(
-      `https://school-management.prower.store/api${url}`,
+      `https://school-template.subcodeco.com/api${url}`,
       {
         method: "PUT",
         headers,
@@ -143,7 +143,7 @@ export async function deleteData({ url, withToken = true, token = null }) {
     const headers = await getHeaders({ isFormData: false, withToken, token });
 
     const response = await fetch(
-      `https://school-management.prower.store/api${url}`,
+      `https://school-template.subcodeco.com/api${url}`,
       {
         method: "DELETE",
         headers,

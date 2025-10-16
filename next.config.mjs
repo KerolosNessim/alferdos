@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "school-management.prower.store",
+        hostname: "school-template.subcodeco.com",
         pathname: "/**",
       },
     ],

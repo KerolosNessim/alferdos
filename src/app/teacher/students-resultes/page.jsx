@@ -32,7 +32,7 @@ const StudentsResultesPage = () => {
             <TableHeader >
               <TableRow className="rounded border">
                 {
-                  ["الاسم", "الرقم القومي", "المرحله", "الدرجه النهائيه", "التفاصيل"].map((item, index) => {
+                  ["الاسم", "الرقم القومي", "المرحله", "الدرجه النهائيه"].map((item, index) => {
                     return (
                       <TableHead key={index} className="text-center font-bold text-main-red border p-4">{item}</TableHead>
                     )
@@ -52,9 +52,9 @@ const StudentsResultesPage = () => {
                           )
                         })
                       }
-                      <TableCell className="text-center p-4 border">
+                      {/* <TableCell className="text-center p-4 border">
                         <Link href={'/teacher/students-resultes/1'}  className="bg-main-red text-white px-4 py-2 rounded cursor-pointer hover:bg-main-red/80 transition-colors duration-300">تفاصيل الدرجات</Link>
-                      </TableCell>
+                      </TableCell> */}
                     </TableRow>
                   )
                 })
